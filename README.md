@@ -1,30 +1,27 @@
-# setup
-Simple boiler plate for MEAN Stack development.
+# Setup
 
-# Operating System Support
-1. Windows
-2. Machintosh
-3. Linux
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
 
-# Pre-requisites softwares
-1. NodeJS latest
-2. Mongo DB latest
-3. Mongo Compass
-4. Visual Studio Code latest
-5. Google Chrome set as default browser
-6. Git SCM latest
+## Development server
 
-# NPM Global commands
-1. npm i -g npm         // To update the npm to latest
-2. npm i -g nodemon     // To restart the express server
-3. npm i -g @angular/cli// To serve and build angular application
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-# Git commands
-1. git clone https://github.com/csrahulram/setup.git
+## Code scaffolding
 
-# Local NPM commands
-1. npm i                // To install the node_modules for the seed
-2. npm start            // To start the development
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-# Additional build commands
-1. ng build --prod
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
