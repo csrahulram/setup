@@ -20,7 +20,7 @@ Simple boiler plate for MEAN Stack development.
 3. npm i -g @angular/cli// To serve and build angular application
 
 # Git commands
-1. git clone https://github.com/csrahulram/seed.git
+1. git clone https://github.com/csrahulram/setup.git
 
 # Local NPM commands
 1. npm i                // To install the node_modules for the seed
