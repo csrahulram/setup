@@ -46,14 +46,11 @@ app.get('/', (req, res)=>{
  
 app.get('/api/handshake', (req, res) => {
     res.status(200).send({'data':'Express api working'});
-    Task.findByName('Complete this setup project.', (err, tasks)=>{
-        console.log(tasks)
-    })
 });
 
 app.get('/api/get_all_task', (req, res) => {
     
-    Task.findByName('Complete this setup project.', (err, tasks)=>{
+    Task.find({}, (err, tasks)=>{
         res.status(200).send({'data':tasks});
     })
 });
