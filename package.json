@@ -25,13 +25,8 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-<<<<<<< HEAD
     "mongoose": "^5.3.11",
     "rxjs": "~6.3.3",
-=======
-    "mongoose": "^5.3.10",
-    "rxjs": "~6.2.0",
->>>>>>> 7151dc6a9668eb9f7df2b791e6dbb4d1492e70b7
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
