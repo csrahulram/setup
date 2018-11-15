@@ -7,11 +7,7 @@ var fs = require('fs');
 
 var session = require('express-session');
 
-<<<<<<< HEAD
 var secret = 'app-secret';
-=======
-var secret = 'meanseed';
->>>>>>> 7151dc6a9668eb9f7df2b791e6dbb4d1492e70b7
 
 app.use(session({ secret: secret, resave: true, saveUninitialized: true }));
 
