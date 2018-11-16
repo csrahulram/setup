@@ -23,11 +23,8 @@ var taskSchema = new Schema({ task: String, status: String });
 taskSchema.statics.findByName = function(task, cb) {
     return this.find({ task: new RegExp(task, 'i') }, cb);
   };
-
+  
 const Task = mongoose.model('task', taskSchema);
-
-const newTask = new Task ({ task: 'Complete this setup project.' });
-newTask.save().then(() => console.log('Task Saved.'));
 
 const cors = require('cors')
 
@@ -40,6 +37,8 @@ app.use(cors(corsOptions));
 
 app.use(express.static(__dirname + '/dist/setup/'));
 
+app.use(bodyParser.json());
+
 app.get('/', (req, res)=>{
     res.sendFile('index.html');
 });
@@ -48,12 +47,24 @@ app.get('/api/handshake', (req, res) => {
     res.status(200).send({'data':'Express api working'});
 });
 
-app.get('/api/get_all_task', (req, res) => {
-    
+app.get('/api/getAllTask', (req, res) => {
     Task.find({}, (err, tasks)=>{
         res.status(200).send({'data':tasks});
     })
 });
+
+app.put('/api/createNewTask', (req, res) => {
+    const newTask = new Task ({ task: req.body.name });
+    newTask.save().then(() => {
+        Task.findByName(req.body.name, (err, tasks)=>{
+            res.status(200).send({'data':tasks[0]});
+        });
+    });
+});
+
+app.delete('/api/deleteTask:id', (req, res) => {
+    console.log(req.params.id);
+})
 
 app.listen(3000, ()=>{
     console.log('Example app listening on port 3000!')
