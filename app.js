@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/setup');
 
 var Schema = mongoose.Schema;
 
-var taskSchema = new Schema({ title: String, status: String });
+var taskSchema = new Schema({ title: String, status: Boolean });
 
 taskSchema.statics.findByName = function(task, cb) {
     return this.find({ task: new RegExp(task, 'i') }, cb);
@@ -54,7 +54,6 @@ app.get('/api/getAllTask', (req, res) => {
 });
 
 app.put('/api/createNewTask', (req, res) => {
-    console.log(req.body);
     const newTask = new Task(req.body);
     newTask.save().then((doc) => {
         Task.find(doc, (err, tasks)=>{
@@ -63,11 +62,17 @@ app.put('/api/createNewTask', (req, res) => {
     });
 });
 
+app.post('/api/strikeTask', (req, res) => {
+    Task.update({_id: req.body._id}, req.body, (err, tasks)=>{
+        res.status(200).send({'data':tasks});
+    });
+});
+
 app.delete('/api/deleteTask/:id', (req, res) => {
     Task.remove({_id: req.params.id}, (err, tasks)=>{
         res.status(200).send({'data':tasks});
     });
-})
+});
 
 app.listen(3000, ()=>{
     console.log('Example app listening on port 3000!')

@@ -12,8 +12,12 @@ import { TaskService } from '../task.service';
 export class TaskComponent implements OnInit {
 
   @Input() task: Task;
-  @HostListener('click') onclick() {
-    this.deleteTask();
+
+ 
+
+  @HostListener('click') strikeTask() {
+    this.task.status = !this.task.status;
+    this.taskService.strikeTask(this.task);
   }
 
   constructor(private taskService: TaskService) { }
@@ -22,9 +26,7 @@ export class TaskComponent implements OnInit {
   }
 
   deleteTask() {
-    this.taskService.deleteTask(this.task).subscribe((res) => {
-      console.log(res);
-    });
+    this.taskService.deleteTask(this.task);
   }
 
 }

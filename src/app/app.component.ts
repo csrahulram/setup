@@ -18,27 +18,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.taskService.handshake().subscribe((res) => {
-      this.expressMessage = res['data'];
-    }, (err) => {
-      this.expressMessage = err.message;
+    this.taskService.handshake().subscribe((data) => {
+      this.expressMessage = data['data'];
     });
-    this.taskService.getAllTasks().subscribe((res) => {
-      this.tasks = res['data'];
-    }, (err) => {
-      this.tasks = [{ 'task': err.message }];
+
+    this.taskService.dataSource.subscribe((data) => {
+      this.tasks = data;
     });
   }
 
   update(event) {
     if (event.code === 'Enter') {
       this.task.status = false;
-      this.taskService.createNewTask(this.task).subscribe((res) => {
-        this.tasks.push(res['data']);
-        this.task.title = '';
-      }, (err) => {
-        this.tasks = [{ 'task': err.message }];
-      });
+      this.taskService.createNewTask(this.task);
+      this.task.title = '';
     }
   }
 

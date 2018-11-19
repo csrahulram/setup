@@ -1,1 +1,2 @@
-<p>{{task.title}}</p>
+<p [ngClass]="task.status ? 'strike':'no-strike'">{{task.title}}</p>
+<button (click)="deleteTask()">X</button>
