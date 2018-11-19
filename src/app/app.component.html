@@ -7,12 +7,9 @@
 </div>
 <h2>Express message : {{expressMessage}}</h2>
 <p>Total tasks : {{tasks.length}}</p>
-<input [(ngModel)]="task.name" (keydown)="update($event)"/>
+<input [(ngModel)]="task.title" (keydown)="update($event)" placeholder="Type here..."/>
 <hr/>
 
-<ul>
-  <li *ngFor="let task of tasks">{{task.task}}</li>
-</ul>
-
+<app-task *ngFor="let task of tasks" [task]="task"></app-task>
 
 <router-outlet></router-outlet>

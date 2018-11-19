@@ -11,15 +11,14 @@ import { Task } from './task';
 export class AppComponent implements OnInit {
   title = 'setup';
   expressMessage = 'Loading...';
-  task:Task = new Task();
+  task: Task = new Task();
   tasks = [];
   constructor(private taskService: TaskService) {
-    this.task.name = '';
+    this.task.title = '';
   }
 
   ngOnInit() {
     this.taskService.handshake().subscribe((res) => {
-      console.log(res)
       this.expressMessage = res['data'];
     }, (err) => {
       this.expressMessage = err.message;
@@ -27,18 +26,19 @@ export class AppComponent implements OnInit {
     this.taskService.getAllTasks().subscribe((res) => {
       this.tasks = res['data'];
     }, (err) => {
-      this.tasks = [{'task' : err.message}];
+      this.tasks = [{ 'task': err.message }];
     });
   }
 
-  update(event){
-    if(event.code == 'Enter'){
-      this.taskService.putNewTask(this.task).subscribe((res) => {
+  update(event) {
+    if (event.code === 'Enter') {
+      this.task.status = false;
+      this.taskService.createNewTask(this.task).subscribe((res) => {
         this.tasks.push(res['data']);
-        this.task.name = '';
+        this.task.title = '';
       }, (err) => {
-        this.tasks = [{'task' : err.message}];
-      })
+        this.tasks = [{ 'task': err.message }];
+      });
     }
   }
 

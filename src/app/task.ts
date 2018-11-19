@@ -1,6 +1,7 @@
 export class Task {
-    name:string
-    _id:string
-    __v:number
+    _id: string;
+    title: string;
+    status: boolean;
+    __v: Int16Array;
 }
 

@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/setup');
 
 var Schema = mongoose.Schema;
 
-var taskSchema = new Schema({ task: String, status: String });
+var taskSchema = new Schema({ title: String, status: String });
 
 taskSchema.statics.findByName = function(task, cb) {
     return this.find({ task: new RegExp(task, 'i') }, cb);
@@ -54,16 +54,19 @@ app.get('/api/getAllTask', (req, res) => {
 });
 
 app.put('/api/createNewTask', (req, res) => {
-    const newTask = new Task ({ task: req.body.name });
-    newTask.save().then(() => {
-        Task.findByName(req.body.name, (err, tasks)=>{
+    console.log(req.body);
+    const newTask = new Task(req.body);
+    newTask.save().then((doc) => {
+        Task.find(doc, (err, tasks)=>{
             res.status(200).send({'data':tasks[0]});
         });
     });
 });
 
-app.delete('/api/deleteTask:id', (req, res) => {
-    console.log(req.params.id);
+app.delete('/api/deleteTask/:id', (req, res) => {
+    Task.remove({_id: req.params.id}, (err, tasks)=>{
+        res.status(200).send({'data':tasks});
+    });
 })
 
 app.listen(3000, ()=>{
