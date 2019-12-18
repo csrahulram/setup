@@ -14,7 +14,7 @@ app.use(session({ secret: secret, resave: true, saveUninitialized: true }));
 app.secret = secret;
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/setup');
+mongoose.connect('mongodb://localhost:27017/setup', { useNewUrlParser: true });
 
 var Schema = mongoose.Schema;
 
@@ -63,13 +63,13 @@ app.put('/api/createNewTask', (req, res) => {
 });
 
 app.post('/api/strikeTask', (req, res) => {
-    Task.update({_id: req.body._id}, req.body, (err, tasks)=>{
+    Task.updateOne({_id: req.body._id}, req.body, (err, tasks)=>{
         res.status(200).send({'data':tasks});
     });
 });
 
 app.delete('/api/deleteTask/:id', (req, res) => {
-    Task.remove({_id: req.params.id}, (err, tasks)=>{
+    Task.removeOne({_id: req.params.id}, (err, tasks)=>{
         res.status(200).send({'data':tasks});
     });
 });
