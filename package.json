@@ -25,7 +25,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "mongoose": "^5.3.13",
+    "mongoose": "^5.7.5",
     "rxjs": "~6.5.3",
     "zone.js": "~0.9.1"
   },
